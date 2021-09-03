@@ -5,6 +5,8 @@ export const useRouteGuard=()=>{
   const { pathname }=useLocation();
   const { isLoggedIn }=useSelector(store=>store.user);
   const routeHistory=useHistory();
-  if (!isLoggedIn&&pathname!=='/login'){return routeHistory.push('/login');}
+  if (!isLoggedIn&&pathname!=='/login'){
+    routeHistory.push('/login');
+  }
   return null;
 };

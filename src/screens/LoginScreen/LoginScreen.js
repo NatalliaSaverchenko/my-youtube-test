@@ -20,7 +20,7 @@ const LoginScreen=()=>{
       reduxDispatch(setIsLoggedIn(false));
       return;}
     if (user){
-      localStorage.setItem('authtoken',user.token);
+      localStorage.setItem('authToken',user.token);
       reduxDispatch(setIsLoggedIn(true));
       routeHistory.push('/');
     }
