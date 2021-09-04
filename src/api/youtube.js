@@ -4,10 +4,14 @@ const instance = axios.create({
   params: {
     part:'snippet',
     key:process.env.REACT_APP_YOUTUBE_KEY,
+    q:'',
+    maxResults:12,
+    order:'date',
+    resultsPerPage:50,
   },
 });
-const searchParams={ q:'',maxResults:12,order:'date' };
-export const getVideos=async(params=searchParams)=>{
+
+export const getVideos=async(params)=>{
   const { data }=await instance.get('/search',{
     params,
   });
