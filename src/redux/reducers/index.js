@@ -3,7 +3,7 @@ import youtubeSearchReducer from './youtubeSearchReducer';
 import userReducer from './userReducer';
 
 const rootReducer = combineReducers({
-  searchVideos:youtubeSearchReducer,
+  youtubeSearch:youtubeSearchReducer,
   user:userReducer,
 
 });
