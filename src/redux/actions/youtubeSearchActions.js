@@ -1,6 +1,6 @@
 import { getVideos } from '../../api/youtube';
 
-import { CHANGE_TITLE,SEARCH_VIDEOS_SUCCESS,SEARCH_VIDEOS_STARTED,SEARCH_VIDEOS_FAILURE,SET_QUERY } from '../actions/actionsType';
+import { CHANGE_TITLE,SEARCH_VIDEOS_SUCCESS,SEARCH_VIDEOS_STARTED,SEARCH_VIDEOS_FAILURE,SET_SEARCH_QUERY } from '../actions/actionsType';
 
 export const searchVideos=(params)=>async(dispatch)=>{
   dispatch(searchVideoStarted());
@@ -34,8 +34,8 @@ export const searchVideoSuccess=(response)=>{
     payload:response,
   };
 };
-export const setQuery=(query)=>{
-  return { type: SET_QUERY,
+export const setSearchQuery=(query)=>{
+  return { type: SET_SEARCH_QUERY,
     payload:query,
   };
 };

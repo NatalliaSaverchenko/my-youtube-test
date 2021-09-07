@@ -11,3 +11,6 @@ export function login(data){
   }
   return null;
 }
+export function getUser(){
+  return users[0];
+}

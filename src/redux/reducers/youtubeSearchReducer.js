@@ -1,4 +1,4 @@
-import { CHANGE_TITLE,SEARCH_VIDEOS_SUCCESS,SEARCH_VIDEOS_STARTED,SEARCH_VIDEOS_FAILURE, SET_QUERY } from '../actions/actionsType';
+import { CHANGE_TITLE,SEARCH_VIDEOS_SUCCESS,SEARCH_VIDEOS_STARTED,SEARCH_VIDEOS_FAILURE,SET_SEARCH_QUERY } from '../actions/actionsType';
 const initialeState = {
   videos:[],
   totalCount:0,
@@ -25,7 +25,7 @@ const youtubeSearchReducer = (state = initialeState, action) => {
         },
       })),
       isLoading:false };
-  case SET_QUERY:
+  case SET_SEARCH_QUERY:
     return { ...state,query:action.payload.query };
   case SEARCH_VIDEOS_FAILURE:
     return { ...state,isLoading:false };

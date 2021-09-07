@@ -1,10 +1,14 @@
 import { Form,Input,Button,Select,Slider } from 'antd';
-import { useMemo } from 'react';
+import { useMemo,useEffect } from 'react';
 
 const FavoritesForm=({ initialValues,onCancel,onSubmit,editMode=false })=>{
+  const [form]=Form.useForm();
   const buttonTexts=useMemo(()=>{return editMode?{ cancelBtn:'Не изменять',okBtn:'Изменить' }:{ cancelBtn:'Не cохранять',okBtn:'Сохранить' };},[editMode]);
+
+  useEffect(()=>form.resetFields(),[form,initialValues]);
   return(
     <Form
+      form={form}
       name="saveForm"
       id="saveForm"
       onFinish={onSubmit}

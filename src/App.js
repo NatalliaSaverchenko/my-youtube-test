@@ -1,13 +1,33 @@
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import { Layout,Row,Col } from 'antd';
+
+import { setUser } from './redux/actions/userActions';
+import { setSavedFavorites } from './redux/actions/favoritesActions';
+
+import { getUser } from './api/login';
 
 import{ RouterView } from './router';
 import { Header } from './components';
+
 import './App.css';
+import { useEffect } from 'react';
 
 function App() {
   const user=useSelector((store)=>store.user);
+
+  const reduxDispatch=useDispatch();
   console.log('user',user);
+  useEffect(()=>{
+
+    if (user.isLoggedIn){
+      const user=getUser();
+      const favorites=localStorage.getItem(user.username);
+      reduxDispatch(setUser(user.username));
+      if (favorites){
+        reduxDispatch(setSavedFavorites(JSON.parse(favorites)));}
+    }
+  },[reduxDispatch,user.isLoggedIn]);
+
   return (
     <Layout style={{ height:'100vh' }}>
       {user.isLoggedIn&&(

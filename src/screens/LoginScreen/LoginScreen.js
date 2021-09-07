@@ -1,7 +1,7 @@
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 // import {} from '../../redux/reducers/userReducer';
-import { setIsLoggedIn } from '../../redux/actions/userActions';
+import { setIsLoggedIn, setUser } from '../../redux/actions/userActions';
 // import {} from '../../redux/actions/actionsType';
 import { message,Row,Col } from 'antd';
 import { LoginForm } from '../../components';
@@ -22,6 +22,7 @@ const LoginScreen=()=>{
     if (user){
       localStorage.setItem('authToken',user.token);
       reduxDispatch(setIsLoggedIn(true));
+      reduxDispatch(setUser(user.username));
       routeHistory.push('/');
     }
 

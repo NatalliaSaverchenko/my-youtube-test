@@ -1,2 +1,4 @@
-const FavoritesScreen=()=>{return(<>FavoritesScreen</>);};
+const FavoritesScreen=()=>{
+
+  return(<>FavoritesScreen</>);};
 export default FavoritesScreen;
