@@ -1,4 +1,4 @@
-.searchInfoWrapper {
+.searchInfoContainer {
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -7,6 +7,16 @@
 
 .videoList {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 0;
+}
+.videoCards{
+  display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
