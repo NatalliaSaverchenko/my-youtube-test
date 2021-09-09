@@ -9,6 +9,7 @@ import { HeartOutlined } from '@ant-design/icons';
 import FavoritesForm from '../../components/FavoritesForm/FavoritesForm';
 import { setFavorites } from '../../redux/actions/favoritesActions';
 import { getUser } from '../../api/login';
+import { SearchResults } from '../../components';
 
 const { Search }=Input;
 
@@ -91,6 +92,7 @@ const SearchScreen=()=>{
           onSubmit={(values)=>saveToFavorites(values)}/>
 
       </Modal>
+      <SearchResults/>
     </div>
   );};
 export default SearchScreen;
