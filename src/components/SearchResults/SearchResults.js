@@ -68,11 +68,11 @@ const SearchResults = () => {
       {/* list||grid */}
 
       {<ul className={view==='list'?styles.videoList:styles.videoCards}>
-        {videoList.map(video => {
+        {videoList.map((video) => {
           return (
             < VideoPreviewItem
               style={{ display:'flex',justifyContent:'spaceBetween' }}
-              key = {video.videoId}
+              key = {video.thumbnail.thumbnail}
               video={video}
             />
           );
