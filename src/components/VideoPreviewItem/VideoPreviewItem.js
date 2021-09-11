@@ -69,5 +69,7 @@ const VideoPreviewItem=({ video })=>{
           }
         />
       </Card>
-    </div>);};
+    </div>
+  );
+};
 export default VideoPreviewItem;

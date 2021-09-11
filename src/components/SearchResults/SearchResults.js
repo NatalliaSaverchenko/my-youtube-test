@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Typography,Row, Col, Space } from 'antd';
 import { UnorderedListOutlined, AppstoreOutlined } from '@ant-design/icons';
-import { VideoPreviewItem } from '../../components';
+import  { VideoPreviewItem }  from '../../components/index';
 
 import styles from './SearchResults.module.css';
 
