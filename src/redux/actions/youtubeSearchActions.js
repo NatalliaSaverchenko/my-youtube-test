@@ -1,6 +1,6 @@
-import { getVideos, getVideosStats } from '../../api/youtube';
+import { getVideos } from '../../api/youtube';
 
-import { CHANGE_TITLE,SEARCH_VIDEOS_SUCCESS,SEARCH_VIDEOS_STARTED,SEARCH_VIDEOS_FAILURE,SET_SEARCH_QUERY,SEARCH_VIDEOS_STATS_SUCCESS,SEARCH_VIDEOS_STATS_STARTED,SEARCH_VIDEOS_STATS_FAILURE } from '../actions/actionsType';
+import { CHANGE_TITLE,SEARCH_VIDEOS_SUCCESS,SEARCH_VIDEOS_STARTED,SEARCH_VIDEOS_FAILURE,SET_SEARCH_QUERY } from '../actions/actionsType';
 
 export const searchVideos=(params)=>async(dispatch)=>{
   dispatch(searchVideoStarted());

@@ -1,7 +1,7 @@
 // import { useEffect } from 'react';
 import {  useState } from 'react';
 import { v4 as uuidV4 } from 'uuid';
-import { Input,Modal } from 'antd';
+import { Input,Modal,Typography } from 'antd';
 // import { getVideos } from '../../api/youtube';
 import { searchVideos,setSearchQuery } from '../../redux/actions/youtubeSearchActions';
 import { useDispatch,useSelector } from 'react-redux';
@@ -10,7 +10,8 @@ import FavoritesForm from '../../components/FavoritesForm/FavoritesForm';
 import { setFavorites } from '../../redux/actions/favoritesActions';
 import { getUser } from '../../api/login';
 import { SearchResults } from '../../components';
-
+import styles from './SearchScreen.module.css';
+const { Title }=Typography;
 const { Search }=Input;
 
 const SearchScreen=()=>{
@@ -25,12 +26,19 @@ const SearchScreen=()=>{
   // useEffect(()=>{
   //   reduxDispatch(searchVideos({ q:'Котики' }));
   // },[reduxDispatch]);
+  // useEffect (() => {
+  //   console.log('search',search);
+  //   if (search) return;
+  //   reduxDispatch(searchVideosStats(search));
+  // }, [reduxDispatch, search]);
+
   const makeSearch=async()=>{
     if (!query){
       return;
     }
     reduxDispatch(setSearchQuery({ query }));
     await reduxDispatch(searchVideos({ q:query }));
+
     // setInitialValues({ ...initialValues,query });
     // setQuery('');
   };
@@ -66,7 +74,9 @@ const SearchScreen=()=>{
 
   return(
     <div>
+      <Title className={styles.searchTitle}>Поиск видео</Title>
       <Search
+        className={styles.search}
         placeholder="Что хотите посмотреть?"
         enterButton="Найти"
         size="large"
@@ -92,7 +102,8 @@ const SearchScreen=()=>{
           onSubmit={(values)=>saveToFavorites(values)}/>
 
       </Modal>
-      <SearchResults/>
+      {search.query?<SearchResults/>:null}
+
     </div>
   );};
 export default SearchScreen;
