@@ -2,8 +2,8 @@ import { Switch,Route } from 'react-router-dom';
 import { LoginScreen,SearchScreen,FavoritesScreen, NotFoundScreen } from '../screens';
 import { useRouteGuard } from './useRouteGuard';
 export const RouterView = () => {
-  const isLoggedIn=useRouteGuard();
-  console.log(isLoggedIn);
+  useRouteGuard();
+
   return (
     <Switch>
       <Route
