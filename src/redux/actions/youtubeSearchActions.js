@@ -6,11 +6,9 @@ export const searchVideos=(params)=>async(dispatch)=>{
   dispatch(searchVideoStarted());
   try{
     const response=await getVideos(params);
-    console.log(response);
     return dispatch(searchVideoSuccess(response));}
 
   catch(err){
-    console.log(err);
     dispatch(searchVideoFailure());
   }
 };

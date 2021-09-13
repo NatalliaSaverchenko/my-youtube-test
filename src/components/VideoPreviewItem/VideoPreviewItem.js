@@ -5,7 +5,6 @@ import styles from './VideoPreviewItem.module.css';
 const numFormatter = new Intl.NumberFormat('ru');
 
 const VideoPreviewItem=({ video })=>{
-  console.log(video);
   return(
     <div>
       <Card

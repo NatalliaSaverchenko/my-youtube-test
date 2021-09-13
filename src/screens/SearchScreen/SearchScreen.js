@@ -11,6 +11,7 @@ import { setFavorites } from '../../redux/actions/favoritesActions';
 import { getUser } from '../../api/login';
 import { SearchResults } from '../../components';
 import styles from './SearchScreen.module.css';
+import { saveFavorite } from '../../api/favorites';
 const { Title }=Typography;
 const { Search }=Input;
 
@@ -18,7 +19,7 @@ const SearchScreen=()=>{
   const reduxDispatch=useDispatch();
   const search=useSelector(store=>store.youtubeSearch);
   const { username }=useSelector(store=>store.user);
-  const { favorites }=useSelector(store=>store.favorites);
+  // const { favorites }=useSelector(store=>store.favorites);
 
   const [query,setQuery]=useState();
   const [isModalOpen,setModalOpen]=useState(false);
@@ -44,12 +45,11 @@ const SearchScreen=()=>{
   };
 
   const saveToFavorites=(values)=>{
-    console.log(favorites);
-    console.log('saveTo',values);
-    reduxDispatch(setFavorites({ ...values,username,id:uuidV4() }));
+    const id=uuidV4();
+
+    reduxDispatch(setFavorites({ ...values,username,id }));
+    saveFavorite(getUser().username,{ ...values,id });
     setModalOpen(false);
-    if (favorites){
-      localStorage.setItem(getUser().username,JSON.stringify(favorites));}
 
   };
 

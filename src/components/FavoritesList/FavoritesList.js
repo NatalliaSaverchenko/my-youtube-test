@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { searchVideos,setSearchQuery } from '../../redux/actions/youtubeSearchActions';
 import { deleteFavorite } from '../../redux/actions/favoritesActions';
+import { getUser } from '../../api/login';
+import { deleteFavoriteFromLs } from '../../api/favorites';
 
 const { confirm } = Modal;
 
@@ -12,7 +14,6 @@ const FavoritesList=({ setIsModalVisible,setActiveFavorite })=>{
   const reduxDispatch = useDispatch();
   const routeHistory = useHistory();
   const { favorites } = useSelector((store) => store.favorites);
-  console.log('favorites',favorites);
 
   const makeSearch = (id) => {
     const searchInput = favorites.filter(element => element.id === id)[0];
@@ -28,14 +29,17 @@ const FavoritesList=({ setIsModalVisible,setActiveFavorite })=>{
   };
 
   const showConfirm = (title,id,username) => {
-    console.log('showConfirm',title);
+
     confirm({
       title: `Удалить запрос «${title}» из «Избранного»?`,
       icon: <ExclamationCircleOutlined />,
       okText: 'Удалить',
       cancelText: 'Отмена',
       onOk() {
+        const username=getUser().username;
         reduxDispatch(deleteFavorite({ id,username }));
+        deleteFavoriteFromLs(username, id );
+
       },
     });
   };

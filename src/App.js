@@ -16,7 +16,7 @@ function App() {
   const user=useSelector((store)=>store.user);
 
   const reduxDispatch=useDispatch();
-  console.log('user',user);
+
   useEffect(()=>{
 
     if (user.isLoggedIn){
@@ -29,7 +29,7 @@ function App() {
   },[reduxDispatch,user.isLoggedIn]);
 
   return (
-    <Layout style={{ height:'100vh' }}>
+    <Layout style={{ minHeight:'100vh' }}>
       {user.isLoggedIn&&(
         <Layout.Header style={{ backgroundColor:'#FFF' }}>
           <Header/>

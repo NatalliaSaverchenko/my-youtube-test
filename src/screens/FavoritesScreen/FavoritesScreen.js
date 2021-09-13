@@ -20,7 +20,9 @@ const FavoritesScreen=()=>{
     resultsPerPage: 12,
   });
   const onEditFavorite = (values) => {
-    reduxDispatch(editFavorite({ ...values, username, id: activeFavorite.id }));
+
+    reduxDispatch(editFavorite({ ...values, username, id:activeFavorite.id }));
+
     setIsModalVisible(false);
   };
   return(<>
