@@ -10,6 +10,7 @@ const numFormatter = new Intl.NumberFormat('ru');
 const SearchResults = () => {
   const search = useSelector((store) => store.youtubeSearch);
   const videoList = useSelector((store) => store.youtubeSearch.videos);
+
   const [view, setView] = useState('list');
   return (
     <div className={styles.container}>

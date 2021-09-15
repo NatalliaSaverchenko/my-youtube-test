@@ -1,9 +1,9 @@
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import {  useState } from 'react';
 import { v4 as uuidV4 } from 'uuid';
 import { Input,Modal,Typography } from 'antd';
 // import { getVideos } from '../../api/youtube';
-import { searchVideos,setSearchQuery } from '../../redux/actions/youtubeSearchActions';
+import { searchVideos,setSearchQuery,searchVideosStats } from '../../redux/actions/youtubeSearchActions';
 import { useDispatch,useSelector } from 'react-redux';
 import { HeartOutlined } from '@ant-design/icons';
 import FavoritesForm from '../../components/FavoritesForm/FavoritesForm';
@@ -24,24 +24,20 @@ const SearchScreen=()=>{
   const [query,setQuery]=useState();
   const [isModalOpen,setModalOpen]=useState(false);
 
-  // useEffect(()=>{
-  //   reduxDispatch(searchVideos({ q:'Котики' }));
-  // },[reduxDispatch]);
-  // useEffect (() => {
-  //   console.log('search',search);
-  //   if (search) return;
-  //   reduxDispatch(searchVideosStats(search));
-  // }, [reduxDispatch, search]);
+  useEffect (() => {
+    if (search.queryStatus !== 'fulfilled') return;
+    reduxDispatch(searchVideosStats(search.listOfVideos));
+  }, [reduxDispatch, search.queryStatus, search.listOfVideos]);
 
   const makeSearch=async()=>{
     if (!query){
       return;
     }
+
     reduxDispatch(setSearchQuery({ query }));
     await reduxDispatch(searchVideos({ q:query }));
+    // await reduxDispatch(searchVideosStats(search.listOfVideos));
 
-    // setInitialValues({ ...initialValues,query });
-    // setQuery('');
   };
 
   const saveToFavorites=(values)=>{
@@ -53,14 +49,6 @@ const SearchScreen=()=>{
 
   };
 
-  // const saveAllFavoritesToLocalStorage=(favorites)=>{
-
-  //   reduxDispatch(setFavoritesToLocalStorage(favorites));
-  //   localStorage.setItem(getUser().username,JSON.stringify(localst));
-
-  // };
-
-  // const openModal=()=>{console.log('OK');};
   const suffix = (
     <HeartOutlined
       onClick={()=>setModalOpen(true)}
@@ -80,7 +68,7 @@ const SearchScreen=()=>{
         placeholder="Что хотите посмотреть?"
         enterButton="Найти"
         size="large"
-        loading={search.isLoading}
+        // loading={search.isLoading}
         onSearch={makeSearch}
         suffix={suffix}
         onChange={(e)=>setQuery(e.target.value)}

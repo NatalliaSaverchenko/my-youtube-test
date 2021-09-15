@@ -5,6 +5,7 @@ import styles from './VideoPreviewItem.module.css';
 const numFormatter = new Intl.NumberFormat('ru');
 
 const VideoPreviewItem=({ video })=>{
+
   return(
     <div>
       <Card
@@ -64,6 +65,7 @@ const VideoPreviewItem=({ video })=>{
                   `${numFormatter.format(Math.round(Number(video.viewCount) / 1000))} тыс. просмотров` :
                   `${video.viewCount} просмотров`}
               </Typography.Text>
+
             </>
           }
         />
