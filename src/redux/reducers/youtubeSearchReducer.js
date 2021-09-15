@@ -6,6 +6,7 @@ import {
   SEARCH_VIDEOS_STATS_STARTED,
   SEARCH_VIDEOS_STATS_FAILURE,
   SEARCH_VIDEOS_STATS_SUCCESS,
+  SRH_LOGOUT,
 } from '../actions/actionsType';
 const initialeState = {
   videos:[],
@@ -48,6 +49,8 @@ const youtubeSearchReducer = (state = initialeState, action) => {
     return { ...state,isLoading:true };
   case SEARCH_VIDEOS_STATS_FAILURE:
     return { ...state,isLoading:false };
+  case SRH_LOGOUT:
+    return { ...state, ...initialeState };
   case SEARCH_VIDEOS_STATS_SUCCESS:
     return { ...state,
       videos:state.videos.map(video => {

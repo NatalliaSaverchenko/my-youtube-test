@@ -8,7 +8,6 @@ import { useDispatch,useSelector } from 'react-redux';
 import { HeartOutlined } from '@ant-design/icons';
 import FavoritesForm from '../../components/FavoritesForm/FavoritesForm';
 import { setFavorites } from '../../redux/actions/favoritesActions';
-import { getUser } from '../../api/login';
 import { SearchResults } from '../../components';
 import styles from './SearchScreen.module.css';
 import { saveFavorite } from '../../api/favorites';
@@ -19,6 +18,8 @@ const SearchScreen=()=>{
   const reduxDispatch=useDispatch();
   const search=useSelector(store=>store.youtubeSearch);
   const { username }=useSelector(store=>store.user);
+
+  console.log(username);
   // const { favorites }=useSelector(store=>store.favorites);
 
   const [query,setQuery]=useState();
@@ -34,17 +35,17 @@ const SearchScreen=()=>{
       return;
     }
 
-    reduxDispatch(setSearchQuery({ query }));
     await reduxDispatch(searchVideos({ q:query }));
+    reduxDispatch(setSearchQuery({ query }));
     // await reduxDispatch(searchVideosStats(search.listOfVideos));
 
   };
 
   const saveToFavorites=(values)=>{
     const id=uuidV4();
-
+    // eslint-disable-next-line no-debugger
     reduxDispatch(setFavorites({ ...values,username,id }));
-    saveFavorite(getUser().username,{ ...values,id });
+    saveFavorite(username,{ ...values,id });
     setModalOpen(false);
 
   };

@@ -43,7 +43,7 @@ const FavoritesForm=({ initialValues,onCancel,onSubmit,editMode=false })=>{
       >
         <Select placeholder='Без сортировки'>
           <Select.Option value='date'>дате</Select.Option>
-          <Select.Option value='raiting'>рейтингу</Select.Option>
+          <Select.Option value='rating'>рейтингу</Select.Option>
           <Select.Option value='relevance'>релевантности</Select.Option>
           <Select.Option value='title'>названию</Select.Option>
           <Select.Option value='videoCount'>videoCount</Select.Option>

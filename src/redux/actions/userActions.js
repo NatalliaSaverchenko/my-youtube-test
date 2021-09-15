@@ -9,8 +9,8 @@ export const setIsLoggedIn=(isLoggedIn)=>{
     payload: isLoggedIn,
   };
 };
-export const setUser=(username)=>{
+export const setUser=(action)=>{
   return{ type: SET_USER,
-    payload: username,
+    payload: action.username,
   };
 };

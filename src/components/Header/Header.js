@@ -1,18 +1,19 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from 'antd';
-import { setIsLoggedIn,setUser } from '../../redux/actions/userActions';
+import { setIsLoggedIn } from '../../redux/actions/userActions';
 import logo from '../../image/sibdev-logo.png';
 
 import './header.css';
 import { useDispatch } from 'react-redux';
-
+import { logoutSrh } from '../../redux/actions/youtubeSearchActions';
 const Header=()=>{
   const reduxDispatch=useDispatch();
   let pathName = useLocation().pathname;
   const handelClick=()=>{
     localStorage.removeItem('authToken');
+    localStorage.removeItem('authUser');
+    reduxDispatch(logoutSrh());
     reduxDispatch(setIsLoggedIn(false));
-    reduxDispatch(setUser(''));
   };
   return (<div>
 

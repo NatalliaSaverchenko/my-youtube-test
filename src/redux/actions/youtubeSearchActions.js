@@ -11,6 +11,7 @@ import {
   SEARCH_VIDEOS_STATS_SUCCESS,
   SEARCH_VIDEOS_STATS_STARTED,
   SEARCH_VIDEOS_STATS_FAILURE,
+  SRH_LOGOUT,
 } from '../actions/actionsType';
 
 export const searchVideos=(params)=>async(dispatch)=>{
@@ -77,3 +78,10 @@ export const searchVideosStatsSuccess=(response)=>{
     payload:response,
   };
 };
+
+export const logoutSrh = () => {
+  return {
+    type: SRH_LOGOUT,
+  };
+}
+;

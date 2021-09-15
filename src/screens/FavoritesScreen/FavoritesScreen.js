@@ -1,4 +1,6 @@
-import { useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-debugger */
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col, Empty,  Modal } from 'antd';
 
@@ -11,6 +13,8 @@ const FavoritesScreen=()=>{
   const reduxDispatch=useDispatch();
   const { username } = useSelector((store) => store.user);
   const { favorites } = useSelector((store) => store.favorites);
+  console.log(favorites);
+
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [activeFavorite, setActiveFavorite] = useState({
     id: '',
@@ -19,6 +23,11 @@ const FavoritesScreen=()=>{
     order: 'relevance',
     resultsPerPage: 12,
   });
+  useEffect(() => {
+    if (favorites.length) {
+      localStorage.setItem(username,JSON.stringify([...favorites]));
+    }
+  }, [favorites]);
   const onEditFavorite = (values) => {
 
     reduxDispatch(editFavorite({ ...values, username, id:activeFavorite.id }));

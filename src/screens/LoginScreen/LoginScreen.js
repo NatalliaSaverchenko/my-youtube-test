@@ -1,39 +1,35 @@
-import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+/* eslint-disable react-hooks/exhaustive-deps */
 // import {} from '../../redux/reducers/userReducer';
-import { setIsLoggedIn, setUser } from '../../redux/actions/userActions';
+import { setUser } from '../../redux/actions/userActions';
 // import {} from '../../redux/actions/actionsType';
-import { message,Row,Col } from 'antd';
+import { message, Row, Col } from 'antd';
 import { LoginForm } from '../../components';
 
 //api
-import { login } from '../../api/login';
+import Login from '../../api/login';
+import { useDispatch } from 'react-redux';
 
-const LoginScreen=()=>{
-  const routeHistory=useHistory();
-  const reduxDispatch=useDispatch();
+const LoginScreen = () => {
+  const reduxDispatch = useDispatch();
+  //  useLogin(data);
+  const onSubmit = (data) => {
 
-  const onSubmit=(data)=>{
-    const user=login(data);
+    const user =  Login(data);
     if(!user){message.error('Ошибка авторизации');
       localStorage.removeItem('authToken');
-      reduxDispatch(setIsLoggedIn(false));
+      localStorage.removeItem('authUser');
       return;}
     if (user){
       localStorage.setItem('authToken',user.token);
-      reduxDispatch(setIsLoggedIn(true));
-      reduxDispatch(setUser(user.username));
-      routeHistory.push('/');
+      localStorage.setItem('authUser',user.username);
     }
-
+    reduxDispatch(setUser(user));
   };
-  return(
-
+  return (
     <Row
       justify="center"
       align="middle"
-      style={{ height: '100vh' }}
-    >
+      style={{ height: '100vh' }}>
       <Col
         xs={{ span: 23 }}
         sm={{ span: 22 }}
@@ -44,13 +40,13 @@ const LoginScreen=()=>{
       >
         <LoginForm
           initialValues={{
-            username:'',
-            password:'' }}
+            username: '',
+            password: '',
+          }}
           onSubmit={onSubmit}
         />
       </Col>
     </Row>
-
   );
 };
 export default LoginScreen;
