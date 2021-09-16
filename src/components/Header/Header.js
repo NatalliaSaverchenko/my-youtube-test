@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
-import { Row,Col,Menu,Button } from 'antd';
+import { Row,Col,Menu } from 'antd';
 import { setIsLoggedIn } from '../../redux/actions/userActions';
+import { useLocation } from 'react-router';
 // import logo from '../../image/sibdev-logo.png';
 import { LogoIcon } from '../LogoIcon';
 import styles from'./Header.module.css';
@@ -8,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import { logoutSrh } from '../../redux/actions/youtubeSearchActions';
 const Header=()=>{
   const reduxDispatch=useDispatch();
-  // let pathName = useLocation().pathname;
+  const { pathname } = useLocation();
   const handelClick=()=>{
     localStorage.removeItem('authToken');
     localStorage.removeItem('authUser');
@@ -32,7 +33,7 @@ const Header=()=>{
         <Menu
           theme="light"
           mode="horizontal"
-          defaultSelectedKeys={['/']}>
+          defaultSelectedKeys={[pathname]}>
           <Menu.Item key="/">
             <NavLink
               className={styles.navlink}
@@ -50,12 +51,21 @@ const Header=()=>{
         </Menu>
       </Col>
       <Col  flex='none'>
-        <Button
-          variant='outline-primary'
-          onClick={()=>handelClick()}
+        <Menu
+          mode='horizontal'
+          style={{ borderColor: 'transparent' }}
         >
+          <Menu.Item key='logout'>
+            <NavLink
+              className={styles.navlink}
+              to={'/login'}
+
+              onClick={()=>handelClick()}
+            >
             Выйти
-        </Button>
+            </NavLink>
+          </Menu.Item>
+        </Menu>
       </Col>
 
     </Row>
