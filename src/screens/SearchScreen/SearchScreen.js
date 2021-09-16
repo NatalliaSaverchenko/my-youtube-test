@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import {  useState } from 'react';
 import { v4 as uuidV4 } from 'uuid';
-import { Input,Modal,Typography } from 'antd';
+import { Input,Modal,Typography,Tooltip } from 'antd';
+import { NavLink } from 'react-router-dom';
 // import { getVideos } from '../../api/youtube';
 import { searchVideos,setSearchQuery,searchVideosStats } from '../../redux/actions/youtubeSearchActions';
 import { useDispatch,useSelector } from 'react-redux';
@@ -19,7 +20,7 @@ const SearchScreen=()=>{
   const search=useSelector(store=>store.youtubeSearch);
   const { username }=useSelector(store=>store.user);
 
-  console.log(username);
+  // console.log(username);
   // const { favorites }=useSelector(store=>store.favorites);
 
   const [query,setQuery]=useState();
@@ -50,7 +51,8 @@ const SearchScreen=()=>{
 
   };
 
-  const suffix = (
+  const suffix =
+  query ?
     <HeartOutlined
       onClick={()=>setModalOpen(true)}
       style={{
@@ -58,23 +60,49 @@ const SearchScreen=()=>{
         color: '#1890ff',
         cursor:'pointer',
       }}
-    />
-  );
+    />:<span/>;
 
   return(
     <div>
       <Title className={styles.searchTitle}>Поиск видео</Title>
-      <Search
-        className={styles.search}
-        placeholder="Что хотите посмотреть?"
-        enterButton="Найти"
-        size="large"
-        // loading={search.isLoading}
-        onSearch={makeSearch}
-        suffix={suffix}
-        onChange={(e)=>setQuery(e.target.value)}
-        value={query}
-      />
+      <div className='searchContainer'>
+        <Tooltip
+          className={styles.toolTipWrapper}
+          placement='bottom'
+          color='#ffffff'
+          title={
+            <>
+              <Typography.Text
+                strong
+                style={{
+                  display: 'block',
+                  marginBottom: 15,
+                }}
+              >
+                        Поиск сохранён в разделе «Избранное»
+              </Typography.Text>
+              <NavLink
+                style={{ marginTop: 15 }}
+                to={'/favorites'}
+              >
+                        Перейти в «Избранное»
+              </NavLink>
+            </>
+          }
+        />
+
+        <Search
+          className={styles.search}
+          placeholder="Что хотите посмотреть?"
+          enterButton="Найти"
+          size="large"
+          // loading={search.isLoading}
+          onSearch={makeSearch}
+          suffix={suffix}
+          onChange={(e)=>setQuery(e.target.value)}
+          value={query}
+        />
+      </div>
       <Modal
         title='Сохранить запрос'
         visible={isModalOpen}

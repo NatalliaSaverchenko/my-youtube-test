@@ -66,6 +66,7 @@ const FavoritesList=({ setIsModalVisible,setActiveFavorite })=>{
       icon: <ExclamationCircleOutlined />,
       onOk() {
         makeSearch(favorite.id);
+
       },
     });
   };

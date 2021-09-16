@@ -13,7 +13,7 @@ const FavoritesScreen=()=>{
   const reduxDispatch=useDispatch();
   const { username } = useSelector((store) => store.user);
   const { favorites } = useSelector((store) => store.favorites);
-  console.log(favorites);
+  // console.log(favorites);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [activeFavorite, setActiveFavorite] = useState({

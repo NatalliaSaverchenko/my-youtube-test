@@ -38,8 +38,9 @@ function App() {
     <Layout style={{ minHeight:'100vh' }}>
       {user.isLoggedIn&&(
         <Layout.Header style={{ backgroundColor:'#FFF' }}>
-          <Header/>
-        </Layout.Header>)}
+          <Header />
+        </Layout.Header>
+      )}
 
       <Layout.Content>
         <Row justify='center'>
