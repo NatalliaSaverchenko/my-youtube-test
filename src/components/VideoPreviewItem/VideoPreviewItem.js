@@ -4,59 +4,59 @@ import styles from './VideoPreviewItem.module.css';
 
 const numFormatter = new Intl.NumberFormat('ru');
 
-const VideoPreviewItem=({ video })=>{
+const VideoPreviewItem = ({ video }) => {
 
   return(
     <div>
       <Card
-        bodyStyle={{
+        bodyStyle = {{
           padding: 0,
         }}
-        style={{
+        style = {{
           width: 245,
           backgroundColor: 'transparent',
           border: 'none',
         }}
-        cover={
+        cover = {
           <Typography.Link
-            href={`https://www.youtube.com/watch?v=${video.videoId}`}
-            target='_blank'
+            href = {`https://www.youtube.com/watch?v=${video.videoId}`}
+            target = '_blank'
           >
             <Image
-              preview={false}
-              width={245}
-              height={138}
-              fallback='../../image/NoPreview.svg'
-              src={video.thumbnail.thumbnail}
-              alt='Video preview'
+              preview = {false}
+              width = {245}
+              height = {138}
+              fallback = '../../image/NoPreview.svg'
+              src = {video.thumbnail.thumbnail}
+              alt = 'Video preview'
             />
           </Typography.Link>
         }
       >
         <Card.Meta
-          description={
+          description = {
             <>
               <Typography.Paragraph
-                ellipsis={{ rows: 2, expandable: false }}
-                style={{ marginBottom: 8 }}
+                ellipsis = {{ rows: 2, expandable: false }}
+                style = {{ marginBottom: 8 }}
               >
                 <Typography.Link
-                  className={styles.videoLink}
-                  href={`https://www.youtube.com/watch?v=${video.videoId}`}
-                  target='_blank'
+                  className = {styles.videoLink}
+                  href = {`https://www.youtube.com/watch?v=${video.videoId}`}
+                  target = '_blank'
                 >
                   {video.title} | {video.description}
                 </Typography.Link>
               </Typography.Paragraph>
               <Typography.Text
-                className={styles.viewsCount}
-                style={{ color: 'rgba(23, 23, 25, 0.3)' }}
+                className = {styles.viewsCount}
+                style = {{ color: 'rgba(23, 23, 25, 0.3)' }}
               >
                 <Typography.Link
-                  className={styles.channelLink}
-                  href={`https://www.youtube.com/channel/${video.channelId}`}
-                  target='_blank'
-                  style={{ color: 'rgba(23, 23, 25, 0.3)' }}
+                  className = {styles.channelLink}
+                  href = {`https://www.youtube.com/channel/${video.channelId}`}
+                  target = '_blank'
+                  style = {{ color: 'rgba(23, 23, 25, 0.3)' }}
                 >
                   {video.channelTitle}
                 </Typography.Link>

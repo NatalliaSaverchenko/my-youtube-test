@@ -1,4 +1,8 @@
-import { SET_FAVORITES,SET_SAVED_FAVORITES,DELETE_FAVORITE,EDIT_FAVORITE } from '../actions/actionsType';
+import {
+  SET_FAVORITES,
+  SET_SAVED_FAVORITES,
+  DELETE_FAVORITE,EDIT_FAVORITE,
+} from '../actions/actionsType';
 
 const initialeState = {
   favorites:[],
@@ -6,21 +10,13 @@ const initialeState = {
 const favoritesReducer = (state = initialeState, action) => {
   switch(action.type){
   case SET_FAVORITES:
-    return { ...state,favorites:[...state.favorites,action.payload]};
-
-    // &&localStorage.setItem(getUser().username,JSON.stringify({ ...state,favorites:[...state.favorites,action.payload]})) ;
-    // return localStorage.setItem(getUser().username,JSON.stringify({ ...state,favorites:[...state.favorites,action.payload]}));
-    // case SET_FAVORITES_TO_LOCAL_STORAGE:
-    //   return { favorites:localStorage.setItem(getUser().username,JSON.stringify(action.payload)),...state.favorites };
-
+    return { ...state, favorites:[...state.favorites,action.payload]};
   case SET_SAVED_FAVORITES:
-    return { ...state,favorites:action.payload };
+    return { ...state, favorites:action.payload };
   case DELETE_FAVORITE:
-    return { ...state,favorites:state.favorites.filter(item=>item.id!==action.payload.id) };
+    return { ...state, favorites:state.favorites.filter(item=>item.id!==action.payload.id) };
   case EDIT_FAVORITE:
-    return { ...state,favorites:state.favorites.map(item=>{return item.id===action.payload.id?action.payload:item;}),
-    };
-
+    return { ...state, favorites:state.favorites.map(item=>{return item.id===action.payload.id?action.payload:item;}) };
   default:{return state;}}
 };
 

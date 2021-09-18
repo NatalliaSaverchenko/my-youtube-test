@@ -5,7 +5,6 @@ const initialeState = {
 };
 const useReducer = (state = initialeState, action) => {
   switch (action.type) {
-
   case SET_IS_LOGGED_IN:
     return { ...state,isLoggedIn:action.payload, username: '' };
   case SET_USER:

@@ -1,5 +1,4 @@
 import {
-  CHANGE_TITLE,
   SEARCH_VIDEOS_SUCCESS,
   SEARCH_VIDEOS_STARTED,
   SEARCH_VIDEOS_FAILURE,SET_SEARCH_QUERY,
@@ -8,6 +7,7 @@ import {
   SEARCH_VIDEOS_STATS_SUCCESS,
   SRH_LOGOUT,
 } from '../actions/actionsType';
+
 const initialeState = {
   videos:[],
   totalCount:0,
@@ -16,10 +16,9 @@ const initialeState = {
   listOfVideos:'',
   queryStatus: '',
 };
+
 const youtubeSearchReducer = (state = initialeState, action) => {
   switch (action.type) {
-  case CHANGE_TITLE:
-    return { ...state,title:action.payload };
   case SEARCH_VIDEOS_STARTED:
     return { ...state,queryStatus:'pending',isLoading:true };
   case SEARCH_VIDEOS_SUCCESS:

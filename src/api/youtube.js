@@ -11,8 +11,8 @@ const instance = axios.create({
   },
 });
 
-export const getVideos=async(params)=>{
-  const { data }=await instance.get('/search',{
+export const getVideos = async (params) => {
+  const { data } = await instance.get('/search',{
     params,
   });
   return data;
@@ -32,7 +32,8 @@ export const getVideos=async(params)=>{
 //     params,
 //   });
 //   return data;};
-export const getVideosStats = async (videoId)=> {
+
+export const getVideosStats = async (videoId) => {
   const { data } = await axios.get(`https://www.googleapis.com/youtube/v3/videos?key=${process.env.REACT_APP_YOUTUBE_KEY}&fields=items(snippet(title,channelTitle,publishedAt),id,statistics(viewCount))&part=snippet,statistics&id=${videoId}`);
 
   return data;

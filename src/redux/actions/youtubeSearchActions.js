@@ -1,9 +1,9 @@
-import { getVideos,
+import {
+  getVideos,
   getVideosStats,
 } from '../../api/youtube';
 
 import {
-  CHANGE_TITLE,
   SEARCH_VIDEOS_SUCCESS,
   SEARCH_VIDEOS_STARTED,
   SEARCH_VIDEOS_FAILURE,
@@ -14,10 +14,10 @@ import {
   SRH_LOGOUT,
 } from '../actions/actionsType';
 
-export const searchVideos=(params)=>async(dispatch)=>{
+export const searchVideos = (params) => async(dispatch) => {
   dispatch(searchVideoStarted());
   try{
-    const response=await getVideos(params);
+    const response = await getVideos(params);
 
     return dispatch(searchVideoSuccess(response));
   }
@@ -27,10 +27,10 @@ export const searchVideos=(params)=>async(dispatch)=>{
   }
 };
 
-export const searchVideosStats=(videoId)=>async(dispatch)=>{
+export const searchVideosStats = (videoId) => async(dispatch) => {
   dispatch(searchVideosStatsStarted());
   try{
-    const response=await getVideosStats(videoId);
+    const response = await getVideosStats(videoId);
 
     return dispatch(searchVideosStatsSuccess(response));}
 
@@ -40,48 +40,48 @@ export const searchVideosStats=(videoId)=>async(dispatch)=>{
   }
 };
 
-export const changeTitle=()=>{
-  return { type: CHANGE_TITLE,
-    payload: null,
+export const searchVideoStarted = () => {
+  return {
+    type: SEARCH_VIDEOS_STARTED,
   };
 };
-export const searchVideoStarted=()=>{
-  return { type: SEARCH_VIDEOS_STARTED,
-  };
-};
-export const searchVideoFailure=(err)=>{
-  return { type: SEARCH_VIDEOS_FAILURE,
+export const searchVideoFailure = (err) => {
+  return {
+    type: SEARCH_VIDEOS_FAILURE,
     payload:{ err },
   };
 };
-export const searchVideoSuccess=(response)=>{
-  return { type: SEARCH_VIDEOS_SUCCESS,
+export const searchVideoSuccess = (response) => {
+  return {
+    type: SEARCH_VIDEOS_SUCCESS,
     payload:response,
   };
 };
-export const setSearchQuery=(query)=>{
-  return { type: SET_SEARCH_QUERY,
+export const setSearchQuery = (query) => {
+  return {
+    type: SET_SEARCH_QUERY,
     payload:query,
   };
 };
-export const searchVideosStatsStarted=()=>{
-  return { type: SEARCH_VIDEOS_STATS_STARTED,
+export const searchVideosStatsStarted = () => {
+  return {
+    type: SEARCH_VIDEOS_STATS_STARTED,
   };
 };
-export const searchVideosStatsFailure=(err)=>{
-  return { type: SEARCH_VIDEOS_STATS_FAILURE,
+export const searchVideosStatsFailure = (err) => {
+  return {
+    type: SEARCH_VIDEOS_STATS_FAILURE,
     payload:{ err },
   };
 };
-export const searchVideosStatsSuccess=(response)=>{
-  return { type: SEARCH_VIDEOS_STATS_SUCCESS,
+export const searchVideosStatsSuccess = (response) => {
+  return {
+    type: SEARCH_VIDEOS_STATS_SUCCESS,
     payload:response,
   };
 };
-
 export const logoutSrh = () => {
   return {
     type: SRH_LOGOUT,
   };
-}
-;
+};

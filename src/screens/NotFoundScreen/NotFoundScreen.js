@@ -1,2 +1,8 @@
-const NotFoundScreen=()=>{return(<>NotFoundScreen</>);};
+const NotFoundScreen = () => {
+  return(
+    <>
+    NotFoundScreen
+    </>
+  );
+};
 export default NotFoundScreen;
