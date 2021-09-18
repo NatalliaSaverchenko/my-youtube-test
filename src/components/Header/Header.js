@@ -33,7 +33,7 @@ const Header=()=>{
         <Menu
           theme="light"
           mode="horizontal"
-          defaultSelectedKeys={[pathname]}>
+          selectedKeys={[pathname]}>
           <Menu.Item key="/">
             <NavLink
               className={styles.navlink}
@@ -55,7 +55,7 @@ const Header=()=>{
           mode='horizontal'
           style={{ borderColor: 'transparent' }}
         >
-          <Menu.Item key='logout'>
+          <Menu.Item key='/login'>
             <NavLink
               className={styles.navlink}
               to={'/login'}

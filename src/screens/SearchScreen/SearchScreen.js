@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useHistory } from 'react-router';
 import {  useState } from 'react';
 import { v4 as uuidV4 } from 'uuid';
 import { Input,Modal,Typography,Tooltip } from 'antd';
@@ -6,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 // import { getVideos } from '../../api/youtube';
 import { searchVideos,setSearchQuery,searchVideosStats } from '../../redux/actions/youtubeSearchActions';
 import { useDispatch,useSelector } from 'react-redux';
-import { HeartOutlined } from '@ant-design/icons';
+import { HeartOutlined,HeartFilled } from '@ant-design/icons';
 import FavoritesForm from '../../components/FavoritesForm/FavoritesForm';
 import { setFavorites } from '../../redux/actions/favoritesActions';
 import { SearchResults } from '../../components';
@@ -21,10 +22,12 @@ const SearchScreen=()=>{
   const { username }=useSelector(store=>store.user);
 
   // console.log(username);
-  // const { favorites }=useSelector(store=>store.favorites);
-
+  const { favorites }=useSelector(store=>store.favorites);
+  console.log('search',search);
   const [query,setQuery]=useState();
   const [isModalOpen,setModalOpen]=useState(false);
+  // const [isModalVisible,setIsModalVisible]=useState(false);
+  const routeHistory=useHistory();
 
   useEffect (() => {
     if (search.queryStatus !== 'fulfilled') return;
@@ -52,44 +55,60 @@ const SearchScreen=()=>{
   };
 
   const suffix =
-  query ?
-    <HeartOutlined
-      onClick={()=>setModalOpen(true)}
-      style={{
-        fontSize: 16,
-        color: '#1890ff',
-        cursor:'pointer',
-      }}
-    />:<span/>;
+  search.query ?
+
+    favorites.filter(el => el.query.trim() === search.query.trim()).length?
+      <Tooltip
+        style={{ visibility: search.videos.length ? 'visible' : 'hidden' }}
+        placement='bottom'
+        trigger='hover'
+        color='#ffffff'
+        title={
+          <>
+            <Typography.Text
+              strong
+              style={{
+                display: 'block',
+                marginBottom: 15,
+              }}
+            >
+                       Поиск сохранён в разделе «Избранное»
+            </Typography.Text>
+            <NavLink
+              style={{ marginTop: 15 }}
+              to={'/favorites'}
+            >
+                       Перейти в «Избранное»
+            </NavLink>
+          </>
+        }
+      >
+        <HeartFilled
+          className={styles.icon}
+          style={{
+            color: '#1890FF',
+            visibility: search.videos.length ? 'visible' : 'hidden',
+          }}
+          onClick={()=> routeHistory.push('/favorites')}
+        />
+      </Tooltip>
+
+      :
+      <HeartOutlined
+        className={styles.icon}
+        style={{
+          color: '#1890FF',
+          visibility: search.videos.length ? 'visible' : 'hidden',
+        }}
+        onClick={() => setModalOpen(true)}
+      />
+
+    :<span/>;
 
   return(
     <div>
       <Title className={styles.searchTitle}>Поиск видео</Title>
       <div className='searchContainer'>
-        <Tooltip
-          className={styles.toolTipWrapper}
-          placement='bottom'
-          color='#ffffff'
-          title={
-            <>
-              <Typography.Text
-                strong
-                style={{
-                  display: 'block',
-                  marginBottom: 15,
-                }}
-              >
-                        Поиск сохранён в разделе «Избранное»
-              </Typography.Text>
-              <NavLink
-                style={{ marginTop: 15 }}
-                to={'/favorites'}
-              >
-                        Перейти в «Избранное»
-              </NavLink>
-            </>
-          }
-        />
 
         <Search
           className={styles.search}

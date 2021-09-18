@@ -17,11 +17,11 @@ export const RouterView = () => {
         component={SearchScreen}
       />
       <Route
+        exact
         path="/favorites"
         component={FavoritesScreen}
       />
       <Route
-        exact
         path="*"
         component={NotFoundScreen}
       />
