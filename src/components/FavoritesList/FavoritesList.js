@@ -6,6 +6,8 @@ import { searchVideos, setSearchQuery } from '../../redux/actions/youtubeSearchA
 import { deleteFavorite } from '../../redux/actions/favoritesActions';
 import { deleteFavoriteFromLs } from '../../api/favorites';
 
+import styles from './FavoritesList.module.css';
+
 const { confirm } = Modal;
 
 const FavoritesList = ({
@@ -98,9 +100,12 @@ const FavoritesList = ({
         renderItem = {item => (
           <List.Item
             key = {item.id}
-            style = {{ flexWrap: 'nowrap' }}
+            style = {{ flexWrap: 'nowrap' ,
+              backgroundColor: '#ffffff',
+            }}
             actions = {[
               <a
+                className={styles.editLink}
                 key = "list-loadmore-edit"
                 onClick = {() => {
                   setActiveFavorite(favorites.filter(el => el.id === item.id)[0]);
@@ -110,6 +115,7 @@ const FavoritesList = ({
                 Изменить
               </a>,
               <a
+                className={styles.deleteLink}
                 key = "list-loadmore-more"
                 onClick = {() => showConfirm(item.query, item.id)}
               >
@@ -118,7 +124,7 @@ const FavoritesList = ({
             ]}
           >
             <Typography.Paragraph
-
+              className = {styles.itemTitle}
               style = {{ margin: 0 }}
               ellipsis = {{ rows: 1, expandable: false }}
               onClick = {() => showConfirmOpenQuery(item)}

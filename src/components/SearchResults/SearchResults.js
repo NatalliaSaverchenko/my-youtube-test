@@ -49,7 +49,7 @@ const SearchResults = () => {
             <UnorderedListOutlined
               style = {{
                 fontSize: 24,
-                color:view === 'list' ? '#000000' : 'rgba(23, 23, 25, 0.3)',
+                color:view === 'list' ? 'rgb(0,0,0)' : 'rgba(23, 23, 25, 0.3)',
               }}
               disabled = {view === 'list'}
               onClick = {() => setView('list')}
@@ -58,7 +58,7 @@ const SearchResults = () => {
             <AppstoreOutlined
               style = {{
                 fontSize: 24,
-                color: view === 'cards' ? '#000000' : 'rgba(23, 23, 25, 0.3)',
+                color: view === 'cards' ? 'rgb(0,0,0)' : 'rgba(23, 23, 25, 0.3)',
               }}
               disabled = {view === 'cards'}
               onClick = {() => setView('cards')}/>

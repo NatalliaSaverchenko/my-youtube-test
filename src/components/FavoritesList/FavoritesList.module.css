@@ -1,0 +1,27 @@
+.itemTitle {
+  cursor: pointer;
+  transition: 0.2s;
+  padding-left: 20px;
+}
+
+.itemTitle:hover,
+.itemTitle:focus {
+  color:rgb(24,143,255)
+}
+.editLink {
+  color: rgba(24, 143, 255, 0.8);
+}
+
+.editLink:hover,
+.editLink:focus {
+  color: rgba(24, 143, 255, 1);
+}
+
+.deleteLink {
+  color: rgba(255, 0, 0, 0.8);
+}
+
+.deleteLink:hover,
+.deleteLink:focus {
+  color: rgba(255, 0, 0, 1);
+}

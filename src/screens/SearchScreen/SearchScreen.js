@@ -25,6 +25,7 @@ const { Search } = Input;
 const SearchScreen = () => {
   const reduxDispatch = useDispatch();
   const search = useSelector(store => store.youtubeSearch);
+
   const { username } = useSelector(store => store.user);
 
   const { favorites } = useSelector(store => store.favorites);
@@ -127,6 +128,7 @@ const SearchScreen = () => {
           onSearch = {makeSearch}
           suffix = {suffix}
           onChange = {(e) => setQuery(e.target.value)}
+          defaultValue={search.query}
           value = {query}
         />
       </div>
