@@ -1,19 +1,21 @@
 import { Form, Input, Button } from 'antd';
-
+import { LogoIcon } from '../LogoIcon';
+import styles from './LoginForm.module.css';
 const LoginForm = ({
   onSubmit,
   initialValues,
 }) => {
   return (
-    <div>
+    <div className = {styles.container}>
+      <LogoIcon/>
+      <h3
+        className = {styles.title}
+      >
+          Вход
+      </h3>
       <Form
+        className = {styles.form}
         name = "basic"
-        labelCol = {{
-          span: 8,
-        }}
-        wrapperCol = {{
-          span: 16,
-        }}
         initialValues = {initialValues}
         layout = 'vertical'
         onFinish = {onSubmit}
@@ -47,7 +49,7 @@ const LoginForm = ({
 
         <Form.Item
           wrapperCol = {{
-            offset: 8,
+            offset: 10,
             span: 16,
           }}
         >
