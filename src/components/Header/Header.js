@@ -12,12 +12,17 @@ import styles from'./Header.module.css';
 
 const Header = () => {
   const reduxDispatch = useDispatch();
+
   const { pathname } = useLocation();
+
   const handelClick = () => {
+
     localStorage.removeItem('authToken');
     localStorage.removeItem('authUser');
+
     reduxDispatch(logoutSrh());
     reduxDispatch(setIsLoggedIn(false));
+
   };
   return (
     <div>

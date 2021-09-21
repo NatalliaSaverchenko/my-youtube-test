@@ -141,7 +141,7 @@ const SearchScreen = () => {
         <FavoritesForm
           initialValues = {{
             id:'',
-            query,
+            query:search.query,
             title:'',
             order:null,
             resultsPerPage:12,
