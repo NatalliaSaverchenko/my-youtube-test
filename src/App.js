@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
@@ -23,7 +22,7 @@ function App() {
         reduxDispatch(setSavedFavorites(JSON.parse(favorites)));
       }
     }
-  },[user.isLoggedIn]);
+  },[user.isLoggedIn,user.username,reduxDispatch]);
 
   return (
     <Layout style = {{ minHeight:'100vh' }}>
