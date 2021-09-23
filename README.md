@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# Приложение для поиска youtube-видео по ключевым словам, а также сохранение запросов поиска. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[my youtube test](https://natalliasaverchenko.github.io/my-youtube-test/#/login)
 
-## Available Scripts
+## *Интерфейс приложения*:
 
-In the project directory, you can run:
+- форма для входа в приложение;
+- главная страница, на которой осуществляется поиск youtube-видео и отображение результатов поиска;
+- страница с сохраненными поисковыми запросами;
 
-### `npm start`
+## Вход
+Вход в приложение осуществляется по Логину и Паролю. Для аутентификации использован json-файл со списком пользователей. После входа генерируется токен и сохраняется localStorage. Полученный токен используется для авторизации - проверка наличия токена в localStorage, если токена нет, значит пользователь не авторизован (видит только страницу авторизации).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Поиск youtube-видео
+После авторизации пользователь попадает на страницу поиска видео. Поиск осуществлется посредством использования YouTube API. Результаты поиска выводятся на эту же страницу. По умолчанию результаты поиска выводятся в виде списка 12 видео (количество отображаемых видео можно изменить при сохранении запроса в раздел "Избранное", а также после его сохранения. Также предусмотрена возможность отображения результатов поиска в виде карточек. Переключение режимов отображения осуществляется при помощи соотвествующих иконок, расположенных под строкой поиска.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Сохранение поисковых запросов
+Для сохранения поискового запроса необходимо нажать на иконку 🤍 , расположенную в конце строки поиска. После нажатия на иконку откроется соотвествующая форма "Сохранить запрос" со следующими полями:
 
-### `npm test`
+- *"Запрос"* - отображается текст запроса (поле недоступно для редактирования);
+- *"Название"* - вводится пользовательское название поискового запроса;
+- *"Сортировать по"* - определяется порядок сортировки видео в результате поиска;
+- *"Максимальное количество"* - определяется максимальное количество видео, отображаемых в результате поиска. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Для сохранения поискового запроса в разделе "Избранное" необходимо нажать кнопку Сохранить.
+После сохранения запроса иконка окрасится в синий цвет 💙. Если после ввода поискового запроса иконка синего цвета 💙, запрос уже был ранее сохранен в разделе "Избранное".
 
-### `npm run build`
+## Раздел "Избранное"
+На данной странице отображаются поисковые запросы, ранее сохраненные пользователем. Все сохраненные пользователем запросы хранятся в localstorage (для каждого пользователя отображаются его поисковые запросы). Переход в раздел "Избранное" осуществляется через навигационное меню (пункт меню Избранное) либо нажатием на иконку 💙 в строке поиска, либо по ссылке Перейти в "Избранное" во всплывающем сообщении, которое появяется при наведении курсора мышки на иконку 💙.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+*В разделее "Избранное" предусмотрены следующие возможности:*
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- *выполнить запрос*, нажав на название запроса, при этом откроется модальное окно с параметрами запроса, что бы выполнить запрос необходимо нажать кнопку "Выполнить";
+- *изменить запрос*, необходимо нажать "Изменить", после чего откроется форма для редактирования параметров запроса (поля формы аналогичны форме для сохранения запроса), в которой для редактирования доступны все поля.
+- *удалить запрос*, необходимо нажать "Удалить", откроется модальное окно для подтверждения или отмены операции удаления запроса.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Выход из приложения
+Осуществляется через навигационное меню -- пункт меню Выйти
 
-### `npm run eject`
+[Ссылка на макет](https://tinyurl.com/y2qshhbg)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Полезное
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1.  [YouTube API](https://developers.google.com/youtube/v3/docs/)
+2.  [Axios](https://github.com/axios/axios)
+3.  [Ant Design](https://ant.design/)
+4.  [Redux](https://redux.js.org/)
+5.  [React Router](https://reacttraining.com/react-router/)
