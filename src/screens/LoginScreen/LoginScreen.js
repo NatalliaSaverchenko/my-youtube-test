@@ -8,7 +8,6 @@ import { LoginForm } from '../../components';
 //api
 import Login from '../../api/login';
 import { useHistory } from 'react-router';
-import { clearFavorites } from '../../redux/actions/favoritesActions';
 
 const LoginScreen = () => {
   const routeHistory=useHistory();
@@ -26,7 +25,6 @@ const LoginScreen = () => {
     localStorage.setItem('authToken',user.token);
     localStorage.setItem('authUser',user.username);
 
-    reduxDispatch(clearFavorites(null));
     reduxDispatch(setIsLoggedIn(true));
     reduxDispatch(setUser(user));
 
