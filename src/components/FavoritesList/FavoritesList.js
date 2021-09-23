@@ -13,15 +13,13 @@ const { confirm } = Modal;
 const FavoritesList = ({
   setIsModalVisible,
   setActiveFavorite,
-})=>{
+}) => {
 
   const reduxDispatch = useDispatch();
   const routeHistory = useHistory();
-  const { favorites } = useSelector((store) => store.favorites);
-  console.log(favorites);
 
+  const { favorites } = useSelector((store) => store.favorites);
   const user  = useSelector((store) => store.user);
-  console.log(user);
 
   const makeSearch = (id) => {
     const searchInput = favorites.filter(element => element.id === id)[0];
@@ -108,7 +106,7 @@ const FavoritesList = ({
             }}
             actions = {[
               <a
-                className={styles.editLink}
+                className = {styles.editLink}
                 key = "list-loadmore-edit"
                 onClick = {() => {
                   setActiveFavorite(favorites.filter(el => el.id === item.id)[0]);
@@ -118,7 +116,7 @@ const FavoritesList = ({
                 Изменить
               </a>,
               <a
-                className={styles.deleteLink}
+                className = {styles.deleteLink}
                 key = "list-loadmore-more"
                 onClick = {() => showConfirm(item.query, item.id)}
               >

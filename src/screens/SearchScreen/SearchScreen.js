@@ -8,9 +8,9 @@ import { Input, Modal, Typography, Tooltip } from 'antd';
 import { NavLink } from 'react-router-dom';
 
 import { setFavorites } from '../../redux/actions/favoritesActions';
-import { searchVideos,setSearchQuery,searchVideosStats } from '../../redux/actions/youtubeSearchActions';
+import { searchVideos, setSearchQuery, searchVideosStats } from '../../redux/actions/youtubeSearchActions';
 
-import { HeartOutlined,HeartFilled } from '@ant-design/icons';
+import { HeartOutlined, HeartFilled } from '@ant-design/icons';
 
 import FavoritesForm from '../../components/FavoritesForm/FavoritesForm';
 import { SearchResults } from '../../components';
@@ -30,8 +30,8 @@ const SearchScreen = () => {
 
   const { favorites } = useSelector(store => store.favorites);
 
-  const [query,setQuery] = useState();
-  const [isModalOpen,setModalOpen] = useState(false);
+  const [query, setQuery] = useState();
+  const [isModalOpen, setModalOpen] = useState(false);
 
   const routeHistory=useHistory();
 
@@ -40,8 +40,12 @@ const SearchScreen = () => {
     reduxDispatch(searchVideosStats(search.listOfVideos));
   }, [reduxDispatch, search.queryStatus, search.listOfVideos]);
 
+  useEffect (() => {
+    setQuery(search.query);
+  }, [search.query]);
+
   const makeSearch = async() => {
-    if (!query){
+    if (!query) {
       return;
     }
 
@@ -51,64 +55,61 @@ const SearchScreen = () => {
   };
 
   const saveToFavorites = (values) => {
-    const id=uuidV4();
+    const id = uuidV4();
     // eslint-disable-next-line no-debugger
-    reduxDispatch(setFavorites({ ...values,username,id }));
-    saveFavorite(username,{ ...values,id });
+    reduxDispatch(setFavorites({ ...values, username, id }));
+    saveFavorite(username, { ...values,id });
     setModalOpen(false);
 
   };
 
   const suffix =
-  search.query ?
-
-    favorites.filter(el => el.query.trim() === search.query.trim()).length?
-      <Tooltip
-        style={{ visibility: search.videos.length ? 'visible' : 'hidden' }}
-        placement = 'bottom'
-        trigger = 'hover'
-        color = '#ffffff'
-        title = {
-          <>
-            <Typography.Text
-              strong
-              style = {{
-                display: 'block',
-                marginBottom: 15,
-              }}
-            >
+  query === search.query && favorites.filter(el => el.query.trim() === search.query.trim()).length ?
+    <Tooltip
+      style = {{ visibility: search.videos.length ? 'visible' : 'hidden' }}
+      placement = 'bottom'
+      trigger = 'hover'
+      color = '#ffffff'
+      title = {
+        <>
+          <Typography.Text
+            strong
+            style = {{
+              display: 'block',
+              marginBottom: 15,
+            }}
+          >
               Поиск сохранён в разделе «Избранное»
-            </Typography.Text>
-            <NavLink
-              style = {{ marginTop: 15 }}
-              to = {'/favorites'}
-            >
+          </Typography.Text>
+          <NavLink
+            style = {{ marginTop: 15 }}
+            to = {'/favorites'}
+          >
               Перейти в «Избранное»
-            </NavLink>
-          </>
-        }
-      >
-        <HeartFilled
-          className = {styles.icon}
-          style = {{
-            color: '#1890FF',
-            visibility: search.videos.length ? 'visible' : 'hidden',
-          }}
-          onClick = {() => routeHistory.push('/favorites')}
-        />
-      </Tooltip>
-
-      :
-      <HeartOutlined
+          </NavLink>
+        </>
+      }
+    >
+      <HeartFilled
         className = {styles.icon}
         style = {{
           color: '#1890FF',
           visibility: search.videos.length ? 'visible' : 'hidden',
         }}
-        onClick = {() => setModalOpen(true)}
+        onClick = {() => routeHistory.push('/favorites')}
       />
+    </Tooltip>
 
-    :<span/>;
+    :
+
+    <HeartOutlined
+      className = {styles.icon}
+      style = {{
+        color: '#1890FF',
+        visibility: search.videos.length ? 'visible' : 'hidden',
+      }}
+      onClick = {() => setModalOpen(true)}
+    />;
 
   return(
     <div>
@@ -128,7 +129,7 @@ const SearchScreen = () => {
           onSearch = {makeSearch}
           suffix = {suffix}
           onChange = {(e) => setQuery(e.target.value)}
-          defaultValue={search.query}
+          defaultValue = {search.query}
           value = {query}
         />
       </div>
@@ -140,11 +141,11 @@ const SearchScreen = () => {
       >
         <FavoritesForm
           initialValues = {{
-            id:'',
-            query:search.query,
-            title:'',
-            order:null,
-            resultsPerPage:12,
+            id: '',
+            query: search.query,
+            title: '',
+            order: null,
+            resultsPerPage: 12,
           }}
           onCancel = {() => setModalOpen(false)}
           onSubmit = {(values) => saveToFavorites(values)}/>
