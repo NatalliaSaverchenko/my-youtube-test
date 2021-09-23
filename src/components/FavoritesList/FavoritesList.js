@@ -18,7 +18,10 @@ const FavoritesList = ({
   const reduxDispatch = useDispatch();
   const routeHistory = useHistory();
   const { favorites } = useSelector((store) => store.favorites);
+  console.log(favorites);
+
   const user  = useSelector((store) => store.user);
+  console.log(user);
 
   const makeSearch = (id) => {
     const searchInput = favorites.filter(element => element.id === id)[0];

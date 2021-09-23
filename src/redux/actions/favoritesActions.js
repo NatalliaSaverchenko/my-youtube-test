@@ -3,12 +3,19 @@ import {
   SET_SAVED_FAVORITES,
   DELETE_FAVORITE,
   EDIT_FAVORITE,
+  CLEAR_FAVORITES,
 } from './actionsType';
 
 export const setFavorites = (values) => {
   return{
     type: SET_FAVORITES,
     payload: values,
+  };
+};
+
+export const clearFavorites = () => {
+  return{
+    type: CLEAR_FAVORITES,
   };
 };
 

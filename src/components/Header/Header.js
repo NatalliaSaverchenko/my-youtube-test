@@ -9,6 +9,7 @@ import { setIsLoggedIn } from '../../redux/actions/userActions';
 import { logoutSrh } from '../../redux/actions/youtubeSearchActions';
 
 import styles from'./Header.module.css';
+import { clearFavorites } from '../../redux/actions/favoritesActions';
 
 const Header = () => {
   const reduxDispatch = useDispatch();
@@ -21,6 +22,7 @@ const Header = () => {
     localStorage.removeItem('authUser');
 
     reduxDispatch(logoutSrh());
+    reduxDispatch(clearFavorites());
     reduxDispatch(setIsLoggedIn(false));
 
   };

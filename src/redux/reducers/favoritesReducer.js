@@ -1,7 +1,7 @@
 import {
   SET_FAVORITES,
   SET_SAVED_FAVORITES,
-  DELETE_FAVORITE,EDIT_FAVORITE,
+  DELETE_FAVORITE,EDIT_FAVORITE, CLEAR_FAVORITES,
 } from '../actions/actionsType';
 
 const initialeState = {
@@ -13,6 +13,8 @@ const favoritesReducer = (state = initialeState, action) => {
     return { ...state, favorites:[...state.favorites,action.payload]};
   case SET_SAVED_FAVORITES:
     return { ...state, favorites:action.payload };
+  case CLEAR_FAVORITES:
+    return { ...state,...initialeState };
   case DELETE_FAVORITE:
     return { ...state, favorites:state.favorites.filter(item=>item.id!==action.payload.id) };
   case EDIT_FAVORITE:
